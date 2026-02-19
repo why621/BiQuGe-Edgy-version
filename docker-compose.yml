@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  novel-platform:
+    build: .
+    container_name: novel-platform
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./data:/app/server/data
+      - ./uploads:/app/server/uploads
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:alpine
+    container_name: novel-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - novel-platform
+    restart: unless-stopped

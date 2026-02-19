@@ -1,0 +1,117 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', sans-serif;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  min-height: 100vh;
+  color: #e0e0e0;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+.el-button--primary {
+  --el-button-bg-color: #e94560;
+  --el-button-border-color: #e94560;
+  --el-button-hover-bg-color: #ff6b6b;
+  --el-button-hover-border-color: #ff6b6b;
+  --el-button-active-bg-color: #c73e54;
+  --el-button-active-border-color: #c73e54;
+}
+
+.el-input__wrapper {
+  background: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: none !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.el-input__wrapper:hover {
+  border-color: #e94560 !important;
+}
+
+.el-input__inner {
+  color: #fff !important;
+}
+
+.el-input__inner::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.el-select .el-input__wrapper {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.el-select-dropdown {
+  background: #1a1a2e !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.el-select-dropdown__item {
+  color: #e0e0e0 !important;
+}
+
+.el-select-dropdown__item:hover {
+  background: rgba(233, 69, 96, 0.3) !important;
+}
+
+.el-select-dropdown__item.selected {
+  color: #e94560 !important;
+}
+
+.el-textarea__inner {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #fff !important;
+}
+
+.el-textarea__inner:focus {
+  border-color: #e94560 !important;
+}
+
+.el-card {
+  background: rgba(26, 26, 46, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px);
+}
+
+.el-dialog {
+  background: #1a1a2e !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.el-dialog__title {
+  color: #fff !important;
+}
+
+.el-form-item__label {
+  color: #e0e0e0 !important;
+}
+
+.el-message {
+  background: #1a1a2e !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e94560;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff6b6b;
+}
