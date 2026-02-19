@@ -15,6 +15,275 @@ body {
   min-height: 100vh;
 }
 
+/* 响应式容器 */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* 响应式工具类 */
+.text-center {
+  text-align: center;
+}
+
+/* 基础响应式样式 */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+  
+  h1 {
+    font-size: 24px !important;
+  }
+  
+  h2 {
+    font-size: 20px !important;
+  }
+  
+  h3 {
+    font-size: 18px !important;
+  }
+  
+  .el-button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+  
+  .el-input,
+  .el-select,
+  .el-textarea {
+    width: 100% !important;
+  }
+}
+
+/* 移动端菜单 */
+@media (max-width: 768px) {
+  .app-header {
+    padding: 0 15px;
+  }
+  
+  .nav-menu {
+    gap: 15px;
+  }
+  
+  .nav-item {
+    font-size: 14px;
+  }
+  
+  .user-area {
+    gap: 10px;
+  }
+  
+  .logo {
+    font-size: 18px;
+  }
+  
+  .logo .el-icon {
+    font-size: 24px;
+  }
+}
+
+/* 首页响应式 */
+@media (max-width: 768px) {
+  .novel-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  
+  .novel-card {
+    padding: 15px;
+  }
+  
+  .novel-cover {
+    height: 140px;
+  }
+  
+  .novel-title {
+    font-size: 16px;
+  }
+}
+
+/* 小说详情页响应式 */
+@media (max-width: 768px) {
+  .novel-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    gap: 20px;
+  }
+  
+  .novel-cover {
+    width: 160px;
+    height: 220px;
+  }
+  
+  .chapter-list {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 10px;
+  }
+  
+  .chapters {
+    display: inline-flex;
+    gap: 10px;
+  }
+  
+  .chapter-item {
+    white-space: nowrap;
+    padding: 8px 16px;
+  }
+}
+
+/* 创作页面响应式 */
+@media (max-width: 768px) {
+  .create-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .settings-panel,
+  .result-panel {
+    padding: 20px;
+  }
+  
+  .result-content {
+    min-height: 300px;
+    max-height: 400px;
+  }
+}
+
+/* 管理后台响应式 */
+@media (max-width: 768px) {
+  .upload-section,
+  .manage-section {
+    padding: 20px;
+  }
+  
+  .content-preview {
+    max-height: 200px;
+  }
+  
+  .cover-uploader {
+    width: 120px;
+    height: 160px;
+  }
+}
+
+/* 我的作品响应式 */
+@media (max-width: 768px) {
+  .novel-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    gap: 15px;
+  }
+  
+  .novel-cover {
+    width: 100px;
+    height: 140px;
+  }
+  
+  .novel-actions {
+    flex-direction: row;
+    gap: 10px;
+  }
+}
+
+/* Element Plus 响应式 */
+@media (max-width: 768px) {
+  .el-dialog {
+    width: 90% !important;
+    margin: 10vh auto !important;
+  }
+  
+  .el-form-item {
+    margin-bottom: 15px;
+  }
+  
+  .el-form-item__label {
+    font-size: 14px;
+  }
+  
+  .el-table {
+    font-size: 14px;
+  }
+  
+  .el-table th,
+  .el-table td {
+    padding: 10px 8px;
+  }
+}
+
+/* 输入框和表单响应式 */
+@media (max-width: 768px) {
+  .el-input__wrapper {
+    padding: 8px 12px;
+  }
+  
+  .el-input__inner {
+    font-size: 14px;
+  }
+  
+  .el-textarea__inner {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+/* 按钮响应式 */
+@media (max-width: 768px) {
+  .el-button--large {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+  
+  .el-button--small {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
+
+/* 标签页响应式 */
+@media (max-width: 768px) {
+  .el-tabs__header {
+    margin-bottom: 15px;
+  }
+  
+  .el-tabs__nav {
+    font-size: 14px;
+  }
+  
+  .el-tabs__item {
+    padding: 0 12px;
+  }
+}
+
+/* 卡片响应式 */
+@media (max-width: 768px) {
+  .el-card {
+    padding: 15px;
+  }
+  
+  .el-card__header {
+    padding: 12px 0;
+  }
+  
+  .el-card__body {
+    padding: 15px 0 0 0;
+  }
+}
+
+/* 滚动条响应式 */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+}
+
 .el-button--primary {
   --el-button-bg-color: #e94560;
   --el-button-border-color: #e94560;
