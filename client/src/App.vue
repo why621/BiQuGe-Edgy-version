@@ -7,19 +7,19 @@
           <span>笔趣阁黑化版</span>
         </router-link>
         <nav class="nav-menu">
-          <router-link to="/" class="nav-item">首页</router-link>
-          <router-link to="/create" class="nav-item">AI创作</router-link>
-          <router-link to="/my-novels" class="nav-item" v-if="userStore.isLoggedIn">我的作品</router-link>
-          <router-link to="/admin" class="nav-item" v-if="userStore.isAdmin">管理后台</router-link>
+          <router-link to="/" class="nav-item nav-animate">首页</router-link>
+          <router-link to="/create" class="nav-item nav-animate">AI创作</router-link>
+          <router-link to="/my-novels" class="nav-item nav-animate" v-if="userStore.isLoggedIn">我的作品</router-link>
+          <router-link to="/admin" class="nav-item nav-animate" v-if="userStore.isAdmin">管理后台</router-link>
         </nav>
         <div class="user-area">
           <template v-if="userStore.isLoggedIn">
             <span class="username">{{ userStore.user?.username }}</span>
-            <el-button type="danger" size="small" @click="logout">退出</el-button>
+            <el-button type="danger" size="small" @click="logout" class="btn-animate btn-ripple">退出</el-button>
           </template>
           <template v-else>
-            <el-button type="primary" size="small" @click="showLogin = true">登录</el-button>
-            <el-button size="small" @click="showRegister = true">注册</el-button>
+            <el-button type="primary" size="small" @click="showLogin = true" class="btn-animate btn-ripple">登录</el-button>
+            <el-button size="small" @click="showRegister = true" class="btn-animate btn-ripple">注册</el-button>
           </template>
         </div>
       </div>

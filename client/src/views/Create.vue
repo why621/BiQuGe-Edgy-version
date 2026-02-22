@@ -1,7 +1,7 @@
 <template>
   <div class="create-page">
     <div class="page-header">
-      <h1>AI小说创作</h1>
+      <h1 class="text-highlight">AI小说创作</h1>
       <p>让AI帮你创作精彩的短篇小说</p>
     </div>
     
@@ -11,7 +11,7 @@
         
         <el-form label-position="top">
           <el-form-item label="写作风格">
-            <el-select v-model="settings.style" placeholder="选择风格" clearable>
+            <el-select v-model="settings.style" placeholder="选择风格" clearable class="input-animate">
               <el-option 
                 v-for="style in keywords.styles" 
                 :key="style.id" 
@@ -27,7 +27,7 @@
           </el-form-item>
           
           <el-form-item label="小说题材">
-            <el-select v-model="settings.genre" placeholder="选择题材" clearable>
+            <el-select v-model="settings.genre" placeholder="选择题材" clearable class="input-animate">
               <el-option 
                 v-for="genre in keywords.genres" 
                 :key="genre.id" 
@@ -54,6 +54,7 @@
             <el-input 
               v-model="settings.keywords" 
               placeholder="输入关键词，用逗号分隔"
+              class="input-animate"
             />
           </el-form-item>
           
@@ -63,6 +64,7 @@
               type="textarea" 
               :rows="4"
               placeholder="描述你想要创作的故事内容..."
+              class="input-animate"
             />
           </el-form-item>
           
@@ -72,6 +74,7 @@
             :loading="creating"
             @click="createNovel"
             :disabled="!settings.prompt"
+            class="btn-animate btn-ripple"
           >
             <el-icon><MagicStick /></el-icon>
             开始创作
@@ -83,11 +86,11 @@
         <div class="result-header">
           <h3>创作结果</h3>
           <div class="result-actions" v-if="generatedContent">
-            <el-button size="small" @click="continueWriting" :loading="continuing">
+            <el-button size="small" @click="continueWriting" :loading="continuing" class="btn-animate btn-ripple">
               <el-icon><Edit /></el-icon>
               续写
             </el-button>
-            <el-button size="small" type="primary" @click="showPublishDialog = true">
+            <el-button size="small" type="primary" @click="showPublishDialog = true" class="btn-animate btn-ripple">
               <el-icon><Upload /></el-icon>
               发布
             </el-button>
@@ -108,10 +111,10 @@
     <el-dialog v-model="showPublishDialog" title="发布小说" width="500px">
       <el-form :model="publishForm" label-width="80px">
         <el-form-item label="小说标题">
-          <el-input v-model="publishForm.title" placeholder="请输入小说标题" />
+          <el-input v-model="publishForm.title" placeholder="请输入小说标题" class="input-animate" />
         </el-form-item>
         <el-form-item label="作者笔名">
-          <el-input v-model="publishForm.author" placeholder="请输入作者笔名" />
+          <el-input v-model="publishForm.author" placeholder="请输入作者笔名" class="input-animate" />
         </el-form-item>
         <el-form-item label="小说简介">
           <el-input 
@@ -119,6 +122,7 @@
             type="textarea" 
             :rows="3"
             placeholder="请输入小说简介"
+            class="input-animate"
           />
         </el-form-item>
         <el-form-item label="小说封面">
@@ -128,14 +132,14 @@
             :before-upload="beforeCoverUpload"
             :http-request="uploadCover"
           >
-            <img v-if="publishForm.cover_url" :src="publishForm.cover_url" class="cover-preview" />
+            <img v-if="publishForm.cover_url" :src="publishForm.cover_url" class="cover-preview img-hover" />
             <el-icon v-else class="cover-uploader-icon"><Plus /></el-icon>
           </el-upload>
         </el-form-item>
       </el-form>
       <template #footer>
-        <el-button @click="showPublishDialog = false">取消</el-button>
-        <el-button type="primary" @click="publishNovel" :loading="publishing">发布</el-button>
+        <el-button @click="showPublishDialog = false" class="btn-animate btn-ripple">取消</el-button>
+        <el-button type="primary" @click="publishNovel" :loading="publishing" class="btn-animate btn-ripple">发布</el-button>
       </template>
     </el-dialog>
   </div>

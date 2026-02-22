@@ -6,19 +6,19 @@
     </div>
     
     <template v-else-if="novel">
-      <div class="novel-header">
-        <div class="novel-cover">
+      <div class="novel-header card-hover">
+        <div class="novel-cover img-hover">
           <img v-if="novel.cover_url" :src="novel.cover_url" alt="封面" />
           <div v-else class="no-cover">
             <el-icon><Document /></el-icon>
           </div>
         </div>
         <div class="novel-meta">
-          <h1>{{ novel.title }}</h1>
+          <h1 class="text-highlight">{{ novel.title }}</h1>
           <p class="author">作者：{{ novel.author_name || novel.author }}</p>
           <div class="tags">
-            <span class="tag" v-if="novel.style">{{ getStyleName(novel.style) }}</span>
-            <span class="tag" v-if="novel.genre">{{ getGenreName(novel.genre) }}</span>
+            <span class="tag tag-animate" v-if="novel.style">{{ getStyleName(novel.style) }}</span>
+            <span class="tag tag-animate" v-if="novel.genre">{{ getGenreName(novel.genre) }}</span>
           </div>
           <p class="description">{{ novel.description || '暂无简介' }}</p>
           <p class="source">来源：{{ novel.source === 'ai' ? 'AI创作' : (novel.source === 'upload' ? '本站上传' : '用户创作') }}</p>
@@ -30,7 +30,7 @@
           <h3>目录</h3>
           <div class="chapters">
             <div 
-              class="chapter-item" 
+              class="chapter-item btn-animate" 
               v-for="chapter in novel.chapters" 
               :key="chapter.id"
               :class="{ active: currentChapter === chapter.chapter_number }"

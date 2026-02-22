@@ -1,13 +1,13 @@
 <template>
   <div class="my-novels-page">
     <div class="page-header">
-      <h1>我的作品</h1>
+      <h1 class="text-highlight">我的作品</h1>
       <p>管理你创作的所有小说</p>
     </div>
     
     <div class="novel-list" v-if="novels.length > 0">
-      <div class="novel-item" v-for="novel in novels" :key="novel.id">
-        <div class="novel-cover">
+      <div class="novel-item card-hover" v-for="novel in novels" :key="novel.id">
+        <div class="novel-cover img-hover">
           <img v-if="novel.cover_url" :src="novel.cover_url" alt="封面" />
           <div v-else class="no-cover">
             <el-icon><Document /></el-icon>
@@ -26,8 +26,8 @@
           <p class="description">{{ novel.description || '暂无简介' }}</p>
         </div>
         <div class="novel-actions">
-          <el-button size="small" @click="viewNovel(novel.id)">查看</el-button>
-          <el-button size="small" type="danger" @click="deleteNovel(novel.id)">删除</el-button>
+          <el-button size="small" @click="viewNovel(novel.id)" class="btn-animate btn-ripple">查看</el-button>
+          <el-button size="small" type="danger" @click="deleteNovel(novel.id)" class="btn-animate btn-ripple">删除</el-button>
         </div>
       </div>
     </div>
@@ -35,7 +35,7 @@
     <div class="empty-state" v-else-if="!loading">
       <el-icon :size="60"><Document /></el-icon>
       <p>你还没有创作任何小说</p>
-      <el-button type="primary" @click="$router.push('/create')">开始创作</el-button>
+      <el-button type="primary" @click="$router.push('/create')" class="btn-animate btn-ripple">开始创作</el-button>
     </div>
     
     <div class="loading-state" v-if="loading">

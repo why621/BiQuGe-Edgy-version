@@ -9,148 +9,595 @@ body {
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
   min-height: 100vh;
   color: #e0e0e0;
+  overflow-x: hidden;
+  /* 添加粒子背景效果 */
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 30%, rgba(233, 69, 96, 0.1) 0%, transparent 20%),
+              radial-gradient(circle at 80% 70%, rgba(15, 52, 96, 0.2) 0%, transparent 30%),
+              radial-gradient(circle at 40% 80%, rgba(233, 69, 96, 0.1) 0%, transparent 25%);
+  pointer-events: none;
+  z-index: -1;
+  animation: floatingBackground 20s ease-in-out infinite;
 }
 
 #app {
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
-/* 响应式容器 */
+/* 全局动画 */
+@keyframes floatingBackground {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(2%, 2%) scale(1.02);
+  }
+  66% {
+    transform: translate(-2%, -1%) scale(0.98);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* 全局过渡效果 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 0.3s ease;
+}
+
+.slide-enter-from {
+  transform: translateX(-100%);
+}
+
+.slide-leave-to {
+  transform: translateX(100%);
+}
+
+/* 加载动画 */
+.loading-shimmer {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 25%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.1) 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+/* 卡片悬浮效果 */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
+}
+
+/* 按钮动画效果 */
+.btn-animate {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-animate::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-animate:hover::before {
+  left: 100%;
+}
+
+.btn-animate:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(233, 69, 96, 0.4);
+}
+
+/* 输入框动画效果 */
+.input-animate {
+  transition: all 0.3s ease;
+}
+
+.input-animate:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(233, 69, 96, 0.3);
+}
+
+/* 导航菜单动画 */
+.nav-animate {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-animate::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #e94560;
+  transition: width 0.3s ease;
+}
+
+.nav-animate:hover::after {
+  width: 100%;
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e94560;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff6b6b;
+  transform: scale(1.1);
+}
+
+/* 文本高亮效果 */
+.text-highlight {
+  position: relative;
+  display: inline-block;
+}
+
+.text-highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(233, 69, 96, 0.3);
+  z-index: -1;
+  transition: all 0.3s ease;
+}
+
+.text-highlight:hover::after {
+  height: 8px;
+  background: rgba(233, 69, 96, 0.4);
+}
+
+/* 标签动画效果 */
+.tag-animate {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.tag-animate:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(233, 69, 96, 0.3);
+}
+
+/* 图片悬停效果 */
+.img-hover {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.img-hover:hover {
+  transform: scale(1.05);
+}
+
+.img-hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(233, 69, 96, 0.1), rgba(15, 52, 96, 0.1));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.img-hover:hover::before {
+  opacity: 1;
+}
+
+/* 按钮波纹效果 */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn-ripple:active::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* 通知动画 */
+.notification-enter-active,
+.notification-leave-active {
+  transition: all 0.3s ease;
+}
+
+.notification-enter-from {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.notification-leave-to {
+  opacity: 0;
+  transform: translateX(100%) scale(0.8);
+}
+
+/* 骨架屏动画 */
+.skeleton {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 25%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.1) 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: 4px;
+}
+
+/* 基础响应式样式 - 移动端优先 */
+
+/* 小屏幕手机 (320px - 480px) */
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+  
+  h1 {
+    font-size: 1.6rem !important;
+  }
+  
+  h2 {
+    font-size: 1.4rem !important;
+  }
+  
+  h3 {
+    font-size: 1.2rem !important;
+  }
+  
+  p, span, div {
+    font-size: 0.9rem !important;
+  }
+  
+  .container {
+    padding: 0 10px;
+  }
+  
+  .el-button {
+    font-size: 0.9rem !important;
+    padding: 6px 12px !important;
+  }
+}
+
+/* 中等屏幕手机 (481px - 768px) */
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+  
+  h1 {
+    font-size: 1.8rem !important;
+  }
+  
+  h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  h3 {
+    font-size: 1.3rem !important;
+  }
+  
+  p, span, div {
+    font-size: 0.95rem !important;
+  }
+  
+  .container {
+    padding: 0 12px;
+  }
+  
+  .el-button {
+    font-size: 0.95rem !important;
+    padding: 8px 16px !important;
+  }
+}
+
+/* 通用容器 */
 .container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-/* 响应式工具类 */
-.text-center {
-  text-align: center;
-}
-
-/* 基础响应式样式 */
-@media (max-width: 768px) {
-  .container {
-    padding: 0 15px;
-  }
-  
-  h1 {
-    font-size: 24px !important;
-  }
-  
-  h2 {
-    font-size: 20px !important;
-  }
-  
-  h3 {
-    font-size: 18px !important;
-  }
-  
-  .el-button {
-    font-size: 14px;
-    padding: 8px 16px;
-  }
-  
-  .el-input,
-  .el-select,
-  .el-textarea {
-    width: 100% !important;
-  }
-}
-
-/* 移动端菜单 */
+/* 头部导航响应式 */
 @media (max-width: 768px) {
   .app-header {
-    padding: 0 15px;
+    padding: 0 12px !important;
+    height: auto !important;
+    min-height: 60px;
+    flex-wrap: wrap;
   }
   
-  .nav-menu {
-    gap: 15px;
-  }
-  
-  .nav-item {
-    font-size: 14px;
-  }
-  
-  .user-area {
-    gap: 10px;
+  .header-content {
+    padding: 0 12px !important;
+    height: auto !important;
+    min-height: 60px;
+    flex-wrap: wrap;
+    align-items: center;
   }
   
   .logo {
-    font-size: 18px;
+    font-size: 1rem !important;
+    flex: 1;
   }
   
   .logo .el-icon {
-    font-size: 24px;
+    font-size: 1.2rem !important;
+  }
+  
+  .nav-menu {
+    display: none !important;
+  }
+  
+  .user-area {
+    gap: 8px !important;
+  }
+  
+  .user-area .el-button {
+    font-size: 0.8rem !important;
+    padding: 4px 8px !important;
+    min-width: auto !important;
+  }
+  
+  .username {
+    font-size: 0.8rem !important;
   }
 }
 
 /* 首页响应式 */
 @media (max-width: 768px) {
+  .page-header {
+    margin-bottom: 20px !important;
+  }
+  
+  .page-header h1 {
+    font-size: 1.6rem !important;
+  }
+  
+  .page-header p {
+    font-size: 0.9rem !important;
+  }
+  
   .novel-grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important;
+    gap: 10px !important;
   }
   
   .novel-card {
-    padding: 15px;
+    padding: 10px !important;
   }
   
   .novel-cover {
-    height: 140px;
+    height: 120px !important;
   }
   
   .novel-title {
-    font-size: 16px;
+    font-size: 0.9rem !important;
+    line-height: 1.3 !important;
+  }
+  
+  .novel-author {
+    font-size: 0.8rem !important;
+  }
+  
+  .novel-desc {
+    font-size: 0.8rem !important;
+    line-height: 1.4 !important;
   }
 }
 
 /* 小说详情页响应式 */
 @media (max-width: 768px) {
   .novel-header {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-    gap: 20px;
+    padding: 15px !important;
+    gap: 15px !important;
   }
   
   .novel-cover {
-    width: 160px;
-    height: 220px;
+    width: 120px !important;
+    height: 160px !important;
+  }
+  
+  .novel-meta h1 {
+    font-size: 1.4rem !important;
+    line-height: 1.3 !important;
+  }
+  
+  .novel-meta p {
+    font-size: 0.85rem !important;
+    line-height: 1.4 !important;
+  }
+  
+  .tags {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+  
+  .tag {
+    font-size: 0.75rem !important;
+    padding: 4px 8px !important;
+  }
+  
+  .novel-content {
+    padding: 15px !important;
+  }
+  
+  .novel-content h3 {
+    font-size: 1.1rem !important;
+    margin-bottom: 15px !important;
+  }
+  
+  .content-text {
+    font-size: 0.9rem !important;
+    line-height: 1.6 !important;
   }
   
   .chapter-list {
-    overflow-x: auto;
-    white-space: nowrap;
-    padding-bottom: 10px;
+    margin-bottom: 20px !important;
   }
   
   .chapters {
-    display: inline-flex;
-    gap: 10px;
+    gap: 8px !important;
   }
   
   .chapter-item {
-    white-space: nowrap;
-    padding: 8px 16px;
+    font-size: 0.85rem !important;
+    padding: 6px 12px !important;
   }
 }
 
 /* 创作页面响应式 */
 @media (max-width: 768px) {
   .create-container {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 15px !important;
   }
   
   .settings-panel,
   .result-panel {
-    padding: 20px;
+    padding: 15px !important;
+  }
+  
+  .settings-panel h3,
+  .result-panel h3 {
+    font-size: 1.1rem !important;
+    margin-bottom: 15px !important;
+  }
+  
+  .el-form-item {
+    margin-bottom: 12px !important;
+  }
+  
+  .el-form-item__label {
+    font-size: 0.9rem !important;
+  }
+  
+  .el-input__inner,
+  .el-textarea__inner,
+  .el-select {
+    font-size: 0.85rem !important;
+  }
+  
+  .el-radio {
+    font-size: 0.85rem !important;
   }
   
   .result-content {
-    min-height: 300px;
-    max-height: 400px;
+    min-height: 250px !important;
+    max-height: 350px !important;
+  }
+  
+  .content-text {
+    font-size: 0.85rem !important;
+    line-height: 1.6 !important;
+  }
+  
+  .result-actions {
+    gap: 8px !important;
+  }
+  
+  .result-actions .el-button {
+    font-size: 0.8rem !important;
+    padding: 6px 12px !important;
   }
 }
 
@@ -158,132 +605,200 @@ body {
 @media (max-width: 768px) {
   .upload-section,
   .manage-section {
-    padding: 20px;
-  }
-  
-  .content-preview {
-    max-height: 200px;
+    padding: 15px !important;
   }
   
   .cover-uploader {
-    width: 120px;
-    height: 160px;
+    width: 100px !important;
+    height: 140px !important;
+  }
+  
+  .content-preview {
+    max-height: 150px !important;
+    font-size: 0.8rem !important;
+  }
+  
+  .el-table {
+    font-size: 0.75rem !important;
+  }
+  
+  .el-table th,
+  .el-table td {
+    padding: 6px 4px !important;
+  }
+  
+  .el-upload__tip {
+    font-size: 0.75rem !important;
   }
 }
 
 /* 我的作品响应式 */
 @media (max-width: 768px) {
   .novel-item {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-    gap: 15px;
+    padding: 15px !important;
+    gap: 12px !important;
   }
   
   .novel-cover {
-    width: 100px;
-    height: 140px;
+    width: 80px !important;
+    height: 110px !important;
+  }
+  
+  .novel-info h3 {
+    font-size: 1rem !important;
+    line-height: 1.3 !important;
+  }
+  
+  .novel-info p {
+    font-size: 0.8rem !important;
+    line-height: 1.4 !important;
   }
   
   .novel-actions {
-    flex-direction: row;
-    gap: 10px;
+    flex-direction: row !important;
+    gap: 8px !important;
+  }
+  
+  .novel-actions .el-button {
+    font-size: 0.8rem !important;
+    padding: 6px 12px !important;
   }
 }
 
-/* Element Plus 响应式 */
+/* 对话框响应式 */
 @media (max-width: 768px) {
   .el-dialog {
-    width: 90% !important;
-    margin: 10vh auto !important;
+    width: 95% !important;
+    margin: 5vh auto !important;
   }
   
-  .el-form-item {
-    margin-bottom: 15px;
+  .el-dialog__header {
+    padding: 15px 20px !important;
   }
   
-  .el-form-item__label {
-    font-size: 14px;
+  .el-dialog__title {
+    font-size: 1.1rem !important;
   }
   
-  .el-table {
-    font-size: 14px;
+  .el-dialog__body {
+    padding: 15px 20px !important;
   }
   
-  .el-table th,
-  .el-table td {
-    padding: 10px 8px;
+  .el-dialog__footer {
+    padding: 15px 20px !important;
+    gap: 10px !important;
+  }
+  
+  .el-dialog__footer .el-button {
+    font-size: 0.9rem !important;
+    padding: 8px 16px !important;
   }
 }
 
 /* 输入框和表单响应式 */
 @media (max-width: 768px) {
   .el-input__wrapper {
-    padding: 8px 12px;
+    padding: 6px 10px !important;
   }
   
   .el-input__inner {
-    font-size: 14px;
+    font-size: 0.85rem !important;
   }
   
   .el-textarea__inner {
-    font-size: 14px;
-    line-height: 1.5;
+    font-size: 0.85rem !important;
+    line-height: 1.5 !important;
+  }
+  
+  .el-select-dropdown {
+    font-size: 0.85rem !important;
+  }
+  
+  .el-select-dropdown__item {
+    font-size: 0.85rem !important;
+    padding: 8px 16px !important;
   }
 }
 
 /* 按钮响应式 */
 @media (max-width: 768px) {
   .el-button--large {
-    font-size: 16px;
-    padding: 10px 20px;
+    font-size: 1rem !important;
+    padding: 10px 20px !important;
+  }
+  
+  .el-button--default {
+    font-size: 0.9rem !important;
+    padding: 8px 16px !important;
   }
   
   .el-button--small {
-    font-size: 12px;
-    padding: 6px 12px;
+    font-size: 0.8rem !important;
+    padding: 6px 12px !important;
   }
 }
 
 /* 标签页响应式 */
 @media (max-width: 768px) {
   .el-tabs__header {
-    margin-bottom: 15px;
+    margin-bottom: 15px !important;
   }
   
   .el-tabs__nav {
-    font-size: 14px;
+    font-size: 0.85rem !important;
   }
   
   .el-tabs__item {
-    padding: 0 12px;
+    padding: 0 10px !important;
   }
 }
 
 /* 卡片响应式 */
 @media (max-width: 768px) {
   .el-card {
-    padding: 15px;
+    padding: 12px !important;
   }
   
   .el-card__header {
-    padding: 12px 0;
+    padding: 10px 0 !important;
   }
   
   .el-card__body {
-    padding: 15px 0 0 0;
+    padding: 12px 0 0 0 !important;
   }
 }
 
 /* 滚动条响应式 */
 @media (max-width: 768px) {
   ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 4px !important;
+    height: 4px !important;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05) !important;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(233, 69, 96, 0.5) !important;
   }
 }
 
+/* 全局文本溢出处理 */
+@media (max-width: 768px) {
+  .novel-title,
+  .novel-author,
+  .username,
+  .novel-meta h1,
+  .el-dialog__title,
+  .el-tabs__item {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+}
+
+/* Element Plus 主题 */
 .el-button--primary {
   --el-button-bg-color: #e94560;
   --el-button-border-color: #e94560;

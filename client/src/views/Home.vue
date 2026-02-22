@@ -1,18 +1,18 @@
 <template>
   <div class="home-page">
     <div class="page-header">
-      <h1>热门小说</h1>
+      <h1 class="text-highlight">热门小说</h1>
       <p>发现精彩故事，开启阅读之旅</p>
     </div>
     
     <div class="novel-grid" v-if="novels.length > 0">
       <div 
-        class="novel-card" 
+        class="novel-card card-hover" 
         v-for="novel in novels" 
         :key="novel.id"
         @click="goToNovel(novel.id)"
       >
-        <div class="novel-cover">
+        <div class="novel-cover img-hover">
           <img v-if="novel.cover_url" :src="novel.cover_url" alt="封面" />
           <div v-else class="no-cover">
             <el-icon><Document /></el-icon>
@@ -22,8 +22,8 @@
           <h3 class="novel-title">{{ novel.title }}</h3>
           <p class="novel-author">{{ novel.author_name || novel.author }}</p>
           <div class="novel-tags">
-            <span class="tag" v-if="novel.style">{{ novel.style }}</span>
-            <span class="tag" v-if="novel.genre">{{ novel.genre }}</span>
+            <span class="tag tag-animate" v-if="novel.style">{{ novel.style }}</span>
+            <span class="tag tag-animate" v-if="novel.genre">{{ novel.genre }}</span>
           </div>
           <p class="novel-desc">{{ novel.description || '暂无简介' }}</p>
         </div>

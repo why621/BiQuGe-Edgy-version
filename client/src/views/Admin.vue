@@ -1,7 +1,7 @@
 <template>
   <div class="admin-page">
     <div class="page-header">
-      <h1>管理后台</h1>
+      <h1 class="text-highlight">管理后台</h1>
       <p>开发者小说上传与管理</p>
     </div>
     
@@ -19,7 +19,7 @@
                 :on-remove="handleFileRemove"
               >
                 <template #trigger>
-                  <el-button type="primary">选择文件</el-button>
+                  <el-button type="primary" class="btn-animate btn-ripple">选择文件</el-button>
                 </template>
                 <template #tip>
                   <div class="el-upload__tip">支持 txt、md 格式，文件大小不超过 50MB</div>
@@ -28,11 +28,11 @@
             </el-form-item>
             
             <el-form-item label="小说标题">
-              <el-input v-model="uploadForm.title" placeholder="请输入小说标题" />
+              <el-input v-model="uploadForm.title" placeholder="请输入小说标题" class="input-animate" />
             </el-form-item>
             
             <el-form-item label="作者">
-              <el-input v-model="uploadForm.author" placeholder="请输入作者名" />
+              <el-input v-model="uploadForm.author" placeholder="请输入作者名" class="input-animate" />
             </el-form-item>
             
             <el-form-item label="简介">
@@ -41,11 +41,12 @@
                 type="textarea" 
                 :rows="3"
                 placeholder="请输入小说简介"
+                class="input-animate"
               />
             </el-form-item>
             
             <el-form-item label="写作风格">
-              <el-select v-model="uploadForm.style" placeholder="选择风格" clearable>
+              <el-select v-model="uploadForm.style" placeholder="选择风格" clearable class="input-animate">
                 <el-option 
                   v-for="style in keywords.styles" 
                   :key="style.id" 
@@ -56,7 +57,7 @@
             </el-form-item>
             
             <el-form-item label="小说题材">
-              <el-select v-model="uploadForm.genre" placeholder="选择题材" clearable>
+              <el-select v-model="uploadForm.genre" placeholder="选择题材" clearable class="input-animate">
                 <el-option 
                   v-for="genre in keywords.genres" 
                   :key="genre.id" 
@@ -73,7 +74,7 @@
                 :before-upload="beforeCoverUpload"
                 :http-request="uploadCoverHandler"
               >
-                <img v-if="uploadForm.cover_url" :src="uploadForm.cover_url" class="cover-preview" />
+                <img v-if="uploadForm.cover_url" :src="uploadForm.cover_url" class="cover-preview img-hover" />
                 <el-icon v-else class="cover-uploader-icon"><Plus /></el-icon>
               </el-upload>
             </el-form-item>
@@ -82,7 +83,7 @@
               <div class="content-preview">
                 <div class="preview-header">
                   <span>共 {{ chapters.length }} 章</span>
-                  <el-button size="small" @click="parseContent">重新解析</el-button>
+                  <el-button size="small" @click="parseContent" class="btn-animate btn-ripple">重新解析</el-button>
                 </div>
                 <div class="chapter-list">
                   <div class="chapter-item" v-for="(chapter, index) in chapters" :key="index">
@@ -100,6 +101,7 @@
                 :loading="uploading"
                 :disabled="!uploadForm.content || !uploadForm.title"
                 @click="submitUpload"
+                class="btn-animate btn-ripple"
               >
                 发布小说
               </el-button>
@@ -118,7 +120,7 @@
             <el-table-column prop="genre" label="题材" width="100" />
             <el-table-column prop="source" label="来源" width="100">
               <template #default="{ row }">
-                <el-tag :type="getSourceType(row.source)">
+                <el-tag :type="getSourceType(row.source)" class="tag-animate">
                   {{ getSourceLabel(row.source) }}
                 </el-tag>
               </template>
@@ -130,8 +132,8 @@
             </el-table-column>
             <el-table-column label="操作" width="150" fixed="right">
               <template #default="{ row }">
-                <el-button size="small" link type="primary" @click="viewNovel(row.id)">查看</el-button>
-                <el-button size="small" link type="danger" @click="deleteNovel(row.id)">删除</el-button>
+                <el-button size="small" link type="primary" @click="viewNovel(row.id)" class="btn-animate">查看</el-button>
+                <el-button size="small" link type="danger" @click="deleteNovel(row.id)" class="btn-animate">删除</el-button>
               </template>
             </el-table-column>
           </el-table>
